@@ -1,0 +1,19 @@
+body {
+	background-color: black;
+	overflow: hidden;
+}
+
+img {
+	width: 100px;
+	position: absolute;
+	top: 100px;
+	left: 100px;
+}
+
+img#coin {
+	width: 50px;
+	filter: brightness(1);
+	filter: grayscale(100%);
+
+
+}
