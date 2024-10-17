@@ -82,15 +82,13 @@ const isCloseToAvatar = ({ x, y }) => {
 };
 
 const moveCoin = () => {
-  let x, y;
   let isClose;
 
   do {
-    const result = generateRandomPosition();
-    x = result.x;
-    y = result.y;
+    const { x, y } = generateRandomPosition();
 
     isClose = isCloseToAvatar({ x, y });
+
     coin.style.top = `${y}px`;
     coin.style.left = `${x}px`;
   } while (isClose);
