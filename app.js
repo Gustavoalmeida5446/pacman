@@ -43,12 +43,28 @@ window.addEventListener('keydown', function(e) {
 
 const moveVertical = (element, amount) => {
 	const currTop = extractPos(element.style.top);
-	element.style.top = `${currTop + amount}px`;
+	const newTop = currTop + amount;
+
+    if (newTop < 0) {
+        element.style.top = `0px`; 
+    } else if (newTop > (window.innerHeight - 100)) {
+        element.style.top = `${window.innerHeight - 100}px`;
+    } else {
+        element.style.top = `${newTop}px`;
+    }
 };
 
 const moveHorizontal = (element, amount) => {
 	const currLeft = extractPos(element.style.left);
-		element.style.left = `${currLeft + amount}px`;
+	const newLeft = currLeft + amount;
+
+	if (newLeft < 0) {
+		element.style.left = `0px`;
+	} else if (newLeft > (window.innerWidth - 100)) {
+		element.style.left = `${window.innerWidth - 100}px`;
+	} else {
+        element.style.left = `${newLeft}px`;
+    }
 };
 
 const extractPos = (pos) => {
