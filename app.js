@@ -12,6 +12,8 @@ function isTouching(a, b) {
 
 const avatar = document.querySelector('#player');
 const body = document.body;
+let bitCounter = 0;
+const displayCounter = document.querySelector('#touchCounter');
 
 window.addEventListener('keydown', function(e) {
 	if (e.key === 'ArrowDown') {
@@ -33,6 +35,8 @@ window.addEventListener('keydown', function(e) {
 		avatar.style.transform = 'scale(-1,1)';
 	}
 	if (isTouching(avatar, coin)) {
+		bitCounter++;
+		displayCounter.textContent = `biticos: ${bitCounter}`;
 		moveCoin();
 		body.style.backgroundColor = '#26ff00';
 		setTimeout(() => {

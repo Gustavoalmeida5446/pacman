@@ -14,6 +14,14 @@ img#coin {
 	width: 50px;
 	filter: brightness(1);
 	filter: grayscale(100%);
+}
 
-
+#touchCounter {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	font-size: 20px;
+	color: rgb(255, 187, 0);
+	font-family: Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
 }
