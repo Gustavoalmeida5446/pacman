@@ -36,9 +36,9 @@ window.addEventListener('keydown', function(e) {
 		moveCoin();
 		body.style.backgroundColor = '#26ff00';
 		setTimeout(() => {
-			body.style.backgroundColor = ''; 
+			body.style.backgroundColor = '';
 		}, 70);
-	} 
+	}
 });
 
 const moveVertical = (element, amount) => {
@@ -52,15 +52,48 @@ const moveHorizontal = (element, amount) => {
 };
 
 const extractPos = (pos) => {
-	if (!pos) return 100;
-	return parseInt(pos.slice(0, -2));
-}
+  if (!pos) return 100;
+  return parseInt(pos.slice(0, -2));
+};
+
+const generateRandomPosition = () => {
+  const y = Math.floor(Math.random() * (window.innerHeight - 50));
+  const x = Math.floor(Math.random() * (window.innerWidth - 50));
+
+  return { x, y };
+};
+
+const isCloseToAvatar = ({ x, y }) => {
+  const avatarSize = avatar.height;
+  const coinSize = coin.height;
+
+  const distanceThreshold = 100;
+
+  const avatarCenterX = extractPos(avatar.style.left) + avatarSize / 2;
+  const avatarCenterY = extractPos(avatar.style.top) + avatarSize / 2;
+
+  const coinCenterX = x + coinSize / 2;
+  const coinCenterY = y + coinSize / 2;
+
+  return (
+    Math.abs(avatarCenterX - coinCenterX) < distanceThreshold &&
+    Math.abs(avatarCenterY - coinCenterY) < distanceThreshold
+  );
+};
 
 const moveCoin = () => {
-	const y = Math.floor(Math.random() * (window.innerHeight - 50))
-	const x = Math.floor(Math.random() * (window.innerWidth - 50))
-	coin.style.top = `${y}px`;
-	coin.style.left = `${x}px`;
+  let x, y;
+  let isClose;
+
+  do {
+    const result = generateRandomPosition();
+    x = result.x;
+    y = result.y;
+
+    isClose = isCloseToAvatar({ x, y });
+    coin.style.top = `${y}px`;
+    coin.style.left = `${x}px`;
+  } while (isClose);
 };
 
 moveCoin();
